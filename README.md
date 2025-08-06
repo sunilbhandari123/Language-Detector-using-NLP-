@@ -3,7 +3,7 @@
 
 This project focuses on identifying different languages such as English, Spanish, Hindi, and others. The dataset, sourced from Kaggle, contains 10,267 text samples. I implemented a Naive Bayes classifier (MultinomialNB) for this task and achieved an accuracy of 98%.
 
-
+**Link to Website :**https://languagedetectionnlp.streamlit.app/
 ## Table of Content
 
 1. Importing all the essiantial libraries.
@@ -88,3 +88,25 @@ model.score(X_test,y_test)
 ## Identification (Screenshot)
 
 ![screenshot](https://github.com/sunilbhandari123/Language-Detector-using-NLP-/blob/main/Screenshot%202025-08-06%20185106.png)
+
+##  Deployment Using Streamlit
+``` http import streamlit as st
+import joblib
+
+
+model = joblib.load("model.pkl")
+vectorizer = joblib.load("vectorizer.pkl")
+
+st.title("🌐 Language Detection App")
+st.write("Detects whether a sentence is in English,Malayalam,Hindi,Tamil, Kannada, French, Spanish, Portuguese, Italian, Sweedish, Dutch, Arabic, Turkish, German, Danish, Greek.")
+
+
+
+
+
+user_input = st.text_input("Enter a sentence:")
+
+if user_input:
+    vectorized_text = vectorizer.transform([user_input])
+    prediction = model.predict(vectorized_text)
+    st.success(f"Predicted Language: **{prediction[0]}**")```
